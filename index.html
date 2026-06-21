@@ -25,7 +25,14 @@
   --transition:0.4s cubic-bezier(0.22,1,0.36,1)
 }
 html{scroll-behavior:smooth}
-body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg-dark);color:var(--text-primary);line-height:1.7;overflow-x:hidden}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background: url('1732935660648_aprecks6.webp') center/cover no-repeat fixed, var(--bg-dark);
+  color:var(--text-primary);
+  line-height:1.7;
+  overflow-x:hidden;
+  position:relative;
+}
 ::selection{background:var(--accent-pink);color:#fff}
 
 .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);backdrop-filter:blur(0);background:transparent}
