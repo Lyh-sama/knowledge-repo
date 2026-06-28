@@ -229,6 +229,15 @@ function renderCategory() {
 document.addEventListener('DOMContentLoaded', renderCategory);
 window.addEventListener('hashchange', renderCategory);
 })();
+
+// Back button: return to categories section on index.html
+(function(){
+  history.pushState({_cat:1}, '', location.href);
+  window.addEventListener('popstate', function() {
+    window.location.replace('index.html#categories');
+  });
+})();
+
 </script>
 </body>
 </html>
