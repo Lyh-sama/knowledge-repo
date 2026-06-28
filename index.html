@@ -163,8 +163,8 @@ footer a:hover{text-decoration:underline}
   <div class="hero-glow hero-glow-3"></div>
   <canvas class="hero-canvas" id="petalCanvas"></canvas>
   <div class="hero-content">
-    <h1 class="hero-title reveal is-in">りく様の世界へようこそ</h1>
-    <div class="hero-actions reveal is-in">
+    <h1 class="hero-title reveal">りく様の世界へようこそ</h1>
+    <div class="hero-actions reveal">
       <a href="#categories" class="hero-btn hero-btn-primary"><i class="fa-solid fa-compass"></i> 浏览分类</a>
     </div>
   </div>
@@ -264,7 +264,7 @@ let ticking = false;
 // The fade happens over this many pixels of travel near each viewport edge.
 // Element starts fading OUT while its top edge is still in [0, BAND] (visible!),
 // and finishes fading IN once its top edge is below [vh-BAND, vh].
-const BAND = 300;
+const BAND = 160;
 
 function update() {
   const vh = window.innerHeight;
