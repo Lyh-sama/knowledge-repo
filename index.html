@@ -125,8 +125,9 @@ footer{padding:3rem 2rem;text-align:center;color:var(--text-secondary);font-size
 footer a{color:var(--accent-purple);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.js .reveal{opacity:0;transform:translateY(30px)}
+.reveal.visible{opacity:1;transform:translateY(0)!important}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
@@ -147,7 +148,7 @@ footer a:hover{text-decoration:underline}
 }
 /* v2 */</style>
 </head>
-<body>
+<body><script>document.documentElement.classList.add("js")</script>
 <nav class="navbar" id="navbar">
   <a href="#" class="nav-logo">りく様の世界</a>
   <ul class="nav-links">
@@ -257,7 +258,7 @@ animate()})()
 const nb=document.getElementById('navbar')
 window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60)})
 
-(function(){var els=document.querySelectorAll('.reveal');var ticking=false;function update(){var vh=window.innerHeight;for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<vh&&r.bottom>0){els[i].classList.add('visible')}else{els[i].classList.remove('visible')}}ticking=false}window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});window.addEventListener('load',function(){requestAnimationFrame(update)});requestAnimationFrame(function(){requestAnimationFrame(update)})})()
+(function(){var els=document.querySelectorAll('.reveal');var ticking=false;function update(){var vh=window.innerHeight;for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<vh&&r.bottom>0){els[i].classList.add('visible')}else{els[i].classList.remove('visible')}}ticking=false}window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});function init(){requestAnimationFrame(function(){requestAnimationFrame(update)})}document.addEventListener('DOMContentLoaded',init);window.addEventListener('load',init)})()
 </script>
 </body>
 </html>
