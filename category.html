@@ -12,11 +12,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg-dark:#0a0a1a;
-  --bg-mid:#12122a;
   --accent-pink:#ff6b9d;
   --accent-purple:#c084fc;
-  --accent-gold:#fbbf24;
-  --accent-teal:#2dd4bf;
   --text-primary:#f1f0fb;
   --text-secondary:#a5a3c4;
   --glass-bg:rgba(255,255,255,0.08);
@@ -24,7 +21,6 @@
   --card-radius:16px;
   --transition:0.4s cubic-bezier(0.22,1,0.36,1)
 }
-html{scroll-behavior:smooth}
 body{
   font-family:'Noto Sans SC',-apple-system,sans-serif;
   background:var(--bg-dark);
@@ -82,16 +78,18 @@ footer a{color:var(--accent-purple);text-decoration:none}
   <div class="doc-list" id="docList"></div>
 </main>
 <footer>
-  <p>りく様の世界 — 由 <a href="https://github.com/Lyh-sama" target="_blank">Lyh-sama</a> 创造</p>
+  <p>知识仓库 — 由 <a href="https://github.com/Lyh-sama" target="_blank">Lyh-sama</a> 用心维护</p>
 </footer>
 <script>
-const categories = {
+(function(){
+var categories = {
   'math-analysis': {
     name: '数学分析',
     icon: 'fa-chart-line',
     desc: '极限、导数、积分、级数，分析学的基础与核心。',
     docs: []
-  }'linear-algebra': {
+  },
+  'linear-algebra': {
     name: '线性代数',
     icon: 'fa-calculator',
     desc: '向量空间、矩阵变换、特征值，现代数学的基石。',
@@ -126,27 +124,36 @@ const categories = {
   }
 };
 
-const hash = window.location.hash.replace('#','') || 'math-analysis';
-const cat = categories[hash] || categories['math-analysis'];
-
-document.getElementById('navTitle').textContent = cat.name;
-document.getElementById('catName').textContent = cat.name;
-document.getElementById('catDesc').textContent = cat.desc;
-document.getElementById('catIcon').innerHTML = '<i class="fa-solid ' + cat.icon + '"></i>';
-document.title = cat.name + ' — りく様の世界';
-
-const list = document.getElementById('docList');
-if (cat.docs.length === 0) {
-  list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>该分类暂无文档，持续整理中...</p></div>';
-} else {
-  list.innerHTML = cat.docs.map(d => 
-    '<a href="' + d.file + '" class="doc-item" target="_blank">' +
-    '<div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>' +
-    '<div class="doc-info"><div class="doc-name">' + d.name + '</div><div class="doc-meta">' + d.meta + '</div></div>' +
-    '<div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>' +
-    '</a>'
-  ).join('');
+function renderCategory() {
+  var hash = window.location.hash.substring(1) || 'math-analysis';
+  var cat = categories[hash] || categories['math-analysis'];
+  
+  document.title = cat.name + ' — りく様の世界';
+  document.getElementById('navTitle').textContent = cat.name;
+  document.getElementById('catName').textContent = cat.name;
+  document.getElementById('catDesc').textContent = cat.desc;
+  document.getElementById('catIcon').innerHTML = '<i class="fa-solid ' + cat.icon + '"></i>';
+  
+  var list = document.getElementById('docList');
+  if (cat.docs.length === 0) {
+    list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>该分类暂无文档，持续整理中...</p></div>';
+  } else {
+    var html = '';
+    for (var i = 0; i < cat.docs.length; i++) {
+      var d = cat.docs[i];
+      html += '<a href="' + d.file + '" class="doc-item" target="_blank">' +
+        '<div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>' +
+        '<div class="doc-info"><div class="doc-name">' + d.name + '</div><div class="doc-meta">' + d.meta + '</div></div>' +
+        '<div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>' +
+        '</a>';
+    }
+    list.innerHTML = html;
+  }
 }
+
+document.addEventListener('DOMContentLoaded', renderCategory);
+window.addEventListener('hashchange', renderCategory);
+})();
 </script>
 </body>
 </html>
