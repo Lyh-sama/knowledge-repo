@@ -125,16 +125,12 @@ footer{padding:3rem 2rem;text-align:center;color:var(--text-secondary);font-size
 footer a{color:var(--accent-purple);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal.fading{opacity:0;transform:translateY(0);transition:opacity .5s ease}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-@keyframes reveal-fallback{to{opacity:1;transform:translateY(0)}}
-.reveal{animation:reveal-fallback 0s 1.2s forwards}
-.reveal.visible{animation:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease;will-change:opacity,transform}
+.reveal.is-in{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+.reveal-delay-4{transition-delay:.32s}
 
 @media(max-width:768px){
   .about-grid{grid-template-columns:1fr;gap:2rem}
@@ -149,8 +145,8 @@ footer a:hover{text-decoration:underline}
   .hero-actions{flex-direction:column;align-items:center}
   .hero-btn{width:100%;justify-content:space-between}
 }
-/* v3-fade */</style>
-<noscript><style>.reveal{opacity:1!important;transform:none!important;animation:none!important}</style></noscript>
+/* v4-scroll */</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <nav class="navbar" id="navbar">
@@ -167,8 +163,8 @@ footer a:hover{text-decoration:underline}
   <div class="hero-glow hero-glow-3"></div>
   <canvas class="hero-canvas" id="petalCanvas"></canvas>
   <div class="hero-content">
-    <h1 class="hero-title reveal visible">りく様の世界へようこそ</h1>
-    <div class="hero-actions reveal visible">
+    <h1 class="hero-title reveal is-in">りく様の世界へようこそ</h1>
+    <div class="hero-actions reveal is-in">
       <a href="#categories" class="hero-btn hero-btn-primary"><i class="fa-solid fa-compass"></i> 浏览分类</a>
     </div>
   </div>
@@ -262,33 +258,55 @@ animate()})()
 const nb=document.getElementById('navbar')
 window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60)})
 
-const els=document.querySelectorAll('.reveal');
-const inObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      e.target.classList.remove('fading');
-    }
-  });
-},{threshold:0.05,rootMargin:'0px 0px -12% 0px'});
-const outObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting){
-      const r=e.boundingClientRect;
-      if(r.top<0 && e.target.classList.contains('visible')){
-        e.target.classList.add('fading');
-        e.target.classList.remove('visible');
-      }
+const revealEls = Array.from(document.querySelectorAll('.reveal'));
+let ticking = false;
+
+function update() {
+  const vh = window.innerHeight;
+  // trigger zone: element fades in as it crosses the bottom 18%..0 of viewport,
+  // fades out as it leaves the top 0..18% of viewport. Symmetric.
+  const margin = vh * 0.18;
+  for (const el of revealEls) {
+    const r = el.getBoundingClientRect();
+    // distance from element center to viewport center, normalized
+    const center = r.top + r.height / 2;
+    // bottom enter: when center is within [vh - margin, vh] -> fade in
+    // top leave:   when center is within [0, margin] -> fade out
+    let visible;
+    if (center > vh - margin && center <= vh) {
+      // entering from bottom
+      visible = (center - (vh - margin)) / margin; // 0..1
+    } else if (center > 0 && center <= margin) {
+      // leaving from top
+      visible = center / margin; // 0..1
+    } else if (center <= 0 || center >= vh) {
+      visible = 0;
     } else {
-      if(e.target.classList.contains('fading')){
-        e.target.classList.remove('fading');
-        e.target.classList.add('visible');
-      }
+      visible = 1;
     }
-  });
-},{threshold:0,rootMargin:'0px 0px -85% 0px'});
-els.forEach(el=>{inObs.observe(el);outObs.observe(el)});
-setTimeout(()=>{document.querySelectorAll('.reveal:not(.visible):not(.fading)').forEach(el=>el.classList.add('visible'))},1500);
+    // binary class switch with a small hysteresis to keep CSS transition doing the work
+    if (visible > 0.5) {
+      el.classList.add('is-in');
+    } else {
+      el.classList.remove('is-in');
+    }
+  }
+  ticking = false;
+}
+
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
+// initial + fallback: run immediately so first-paint elements show without waiting
+update();
+// hard safety net: if anything is still hidden after 2s, show it (prevents white screen)
+setTimeout(() => { revealEls.forEach(el => el.classList.add('is-in')); }, 2000);
 </script>
 </body>
 </html>
