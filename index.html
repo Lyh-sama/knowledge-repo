@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -27,7 +27,7 @@
 html{scroll-behavior:smooth}
 body{
   font-family:'Noto Sans SC',-apple-system,sans-serif;
-  background: var(--bg-dark);
+  background:var(--bg-dark);
   color:var(--text-primary);
   line-height:1.7;
   overflow-x:hidden;
@@ -35,7 +35,7 @@ body{
 }
 ::selection{background:var(--accent-pink);color:#fff}
 
-.navbar{position:fixed;will-change:transform;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);background:transparent}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);background:transparent;will-change:transform}
 .navbar.scrolled{background:rgba(10,10,26,0.93);border-bottom:1px solid rgba(255,255,255,0.06)}
 .nav-logo{font-size:1.15rem;font-weight:600;background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none}
 .nav-links{display:flex;gap:2rem;list-style:none}
@@ -44,7 +44,7 @@ body{
 .nav-links a:hover{color:var(--text-primary)}
 .nav-links a:hover::after{width:100%}
 
-.hero{position:relative;will-change:transform;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(to bottom,rgba(10,10,26,0) 40%,rgba(10,10,26,0.7) 80%,var(--bg-dark) 100%),url('1732935660648_aprecks6.webp') center/cover no-repeat}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(to bottom,rgba(10,10,26,0) 40%,rgba(10,10,26,0.7) 80%,var(--bg-dark) 100%),url('1732935660648_aprecks6.webp') center/cover no-repeat;will-change:transform}
 .hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
 .hero-glow{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
 .hero-glow-1{width:600px;height:600px;background:radial-gradient(circle,rgba(192,132,252,0.15),transparent);top:-200px;left:-100px;animation:float-glow 12s ease-in-out infinite}
@@ -87,7 +87,8 @@ section{padding:6rem 2rem;position:relative}
 .stat-label{color:var(--text-secondary);font-size:.8rem;margin-top:.25rem}
 
 .categories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
-.category-card{padding:2rem;border-radius:var(--card-radius);background:var(--glass-bg);border:1px solid var(--glass-border);transition:var(--transition);cursor:default;position:relative;overflow:hidden}
+a.category-card{text-decoration:none;color:inherit;display:block}
+.category-card,.category-card{padding:2rem;border-radius:var(--card-radius);background:var(--glass-bg);border:1px solid var(--glass-border);transition:var(--transition);cursor:pointer;position:relative;overflow:hidden}
 .category-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent-pink),var(--accent-purple));transform:scaleX(0);transform-origin:left;transition:var(--transition)}
 .category-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
 .category-card:hover::before{transform:scaleX(1)}
@@ -99,16 +100,6 @@ section{padding:6rem 2rem;position:relative}
 .card-tag{padding:2px 10px;border-radius:100px;background:rgba(192,132,252,0.1);color:var(--accent-purple);font-size:.75rem;border:1px solid rgba(192,132,252,0.15)}
 .card-tag.math{background:rgba(45,212,191,0.1);color:var(--accent-teal);border-color:rgba(45,212,191,0.15)}
 .card-tag.physics{background:rgba(251,191,36,0.1);color:var(--accent-gold);border-color:rgba(251,191,36,0.15)}
-
-.doc-list{display:grid;gap:1rem}
-.doc-item{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;border-radius:var(--card-radius);background:var(--glass-bg);border:1px solid var(--glass-border);transition:var(--transition);text-decoration:none;color:inherit}
-.doc-item:hover{transform:translateX(6px);border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.04)}
-.doc-icon{width:44px;height:44px;flex-shrink:0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:rgba(255,107,157,0.12);color:var(--accent-pink)}
-.doc-info{flex:1;min-width:0}
-.doc-name{font-weight:500;font-size:.95rem;margin-bottom:.15rem}
-.doc-meta{color:var(--text-secondary);font-size:.8rem}
-.doc-arrow{color:var(--text-secondary);font-size:.9rem;transition:var(--transition)}
-.doc-item:hover .doc-arrow{color:var(--accent-purple);transform:translateX(4px)}
 
 .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(192,132,252,0.2),rgba(255,107,157,0.2),transparent);max-width:1100px;margin:0 auto}
 
@@ -144,7 +135,6 @@ footer a:hover{text-decoration:underline}
   <ul class="nav-links">
     <li><a href="#about">关于</a></li>
     <li><a href="#categories">分类</a></li>
-    <li><a href="#documents">文档</a></li>
   </ul>
 </nav>
 
@@ -158,14 +148,13 @@ footer a:hover{text-decoration:underline}
     <p class="hero-sub">此网站用于保存本人的各类资料。<br></p>
     <div class="hero-actions">
       <a href="#categories" class="hero-btn hero-btn-primary"><i class="fa-solid fa-compass"></i> 浏览分类</a>
-      <a href="#documents" class="hero-btn hero-btn-secondary"><i class="fa-solid fa-file-lines"></i> 查看文档</a>
     </div>
   </div>
   <div class="hero-scroll"><span>向下探索</span><i class="fa-solid fa-chevron-down"></i></div>
 </section>
 
 <div class="section-divider"></div>
-<section id="about" style="content-visibility:auto;contain-intrinsic-size:auto 500px">
+<section id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-text reveal">
@@ -175,7 +164,7 @@ footer a:hover{text-decoration:underline}
         <p>知识不止于获取，更在于整理与回顾。希望这个小小的仓库，能成为我随时回望的知识坐标。</p>
       </div>
       <div class="about-stats reveal reveal-delay-1">
-        <div class="stat-card"><div class="stat-number">8+</div><div class="stat-label">学科分类</div></div>
+        <div class="stat-card"><div class="stat-number">7+</div><div class="stat-label">学科分类</div></div>
         <div class="stat-card"><div class="stat-number">30+</div><div class="stat-label">学习文档</div></div>
         <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">探索无止境</div></div>
       </div>
@@ -184,84 +173,60 @@ footer a:hover{text-decoration:underline}
 </section>
 
 <div class="section-divider"></div>
-<section id="categories" style="content-visibility:auto;contain-intrinsic-size:auto 500px">
+<section id="categories">
   <div class="section-inner">
     <div class="section-label reveal">知识分类</div>
     <h2 class="section-title reveal reveal-delay-1">学科脉络</h2>
-    <p class="section-desc reveal reveal-delay-2">每一门学科都是一扇通往新世界的门。以下是我正在探索的领域。</p>
+    <p class="section-desc reveal reveal-delay-2">每一门学科都是一扇通往新世界的门。点击卡片进入查看对应资料。</p>
     <div class="categories-grid">
-      <div class="category-card reveal">
+      <a href="category.html#math-analysis" class="category-card reveal">
         <div class="card-icon"><i class="fa-solid fa-sigma"></i></div>
         <h3 class="card-title">数学分析</h3>
         <p class="card-desc">极限、导数、积分、级数，分析学的基础与核心。</p>
         <div class="card-tags"><span class="card-tag math">微积分</span><span class="card-tag math">实分析</span><span class="card-tag math">级数</span></div>
-      </div>
-      <div class="category-card reveal reveal-delay-1">
+      </a>
+      <a href="category.html#pde" class="category-card reveal reveal-delay-1">
         <div class="card-icon"><i class="fa-solid fa-wave-square"></i></div>
         <h3 class="card-title">偏微分方程</h3>
         <p class="card-desc">热方程、波动方程、拉普拉斯方程，描述世界的语言。</p>
         <div class="card-tags"><span class="card-tag math">PDE</span><span class="card-tag math">傅里叶分析</span><span class="card-tag math">变分法</span></div>
-      </div>
-      <div class="category-card reveal reveal-delay-2">
+      </a>
+      <a href="category.html#linear-algebra" class="category-card reveal reveal-delay-2">
         <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
         <h3 class="card-title">线性代数</h3>
         <p class="card-desc">向量空间、矩阵变换、特征值，现代数学的基石。</p>
         <div class="card-tags"><span class="card-tag math">矩阵论</span><span class="card-tag math">向量空间</span></div>
-      </div>
-      <div class="category-card reveal">
+      </a>
+      <a href="category.html#quantum-info" class="category-card reveal">
         <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
-        <h3 class="card-title">物理学</h3>
-        <p class="card-desc">力学、电磁学、热力学，理解自然的基本规律。</p>
-        <div class="card-tags"><span class="card-tag physics">经典力学</span><span class="card-tag physics">电磁学</span><span class="card-tag physics">热力学</span></div>
-      </div>
+        <h3 class="card-title">量子信息与量子计算</h3>
+        <p class="card-desc">量子比特、量子门、量子纠错，信息与物理的交汇。</p>
+        <div class="card-tags"><span class="card-tag physics">量子纠错</span><span class="card-tag physics">量子计算</span><span class="card-tag">量子信息</span></div>
+      </a>
+      <a href="category.html#probability" class="category-card reveal reveal-delay-1">
+        <div class="card-icon"><i class="fa-solid fa-dice"></i></div>
+        <h3 class="card-title">概率论</h3>
+        <p class="card-desc">随机变量、分布、极限定理，不确定性的数学语言。</p>
+        <div class="card-tags"><span class="card-tag math">随机过程</span><span class="card-tag math">测度论</span></div>
+      </a>
+      <a href="category.html#statistics" class="category-card reveal reveal-delay-2">
+        <div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div>
+        <h3 class="card-title">数理统计</h3>
+        <p class="card-desc">估计、检验、回归，从数据中提取信息的方法论。</p>
+        <div class="card-tags"><span class="card-tag math">假设检验</span><span class="card-tag math">回归分析</span></div>
+      </a>
+      <a href="category.html#functional-analysis" class="category-card reveal">
+        <div class="card-icon"><i class="fa-solid fa-infinity"></i></div>
+        <h3 class="card-title">泛函分析</h3>
+        <p class="card-desc">无限维空间、算子理论，分析的几何化视角。</p>
+        <div class="card-tags"><span class="card-tag math">Banach空间</span><span class="card-tag math">Hilbert空间</span><span class="card-tag math">算子论</span></div>
+      </a>
       <div class="category-card reveal reveal-delay-1">
-        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
-        <h3 class="card-title">编程与算法</h3>
-        <p class="card-desc">数据结构、算法设计、编程语言，用代码构建逻辑。</p>
-        <div class="card-tags"><span class="card-tag">算法</span><span class="card-tag">Python</span><span class="card-tag">数据结构</span></div>
-      </div>
-      <div class="category-card reveal reveal-delay-2">
         <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
         <h3 class="card-title">更多领域</h3>
         <p class="card-desc">持续学习中，更多学科内容正在整理和归档。</p>
-        <div class="card-tags"><span class="card-tag">概率论</span><span class="card-tag">数理统计</span><span class="card-tag">更多</span></div>
+        <div class="card-tags"><span class="card-tag">拓扑学</span><span class="card-tag">微分几何</span><span class="card-tag">更多</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-<section id="documents" style="content-visibility:auto;contain-intrinsic-size:auto 500px">
-  <div class="section-inner">
-    <div class="section-label reveal">文档资源</div>
-    <h2 class="section-title reveal reveal-delay-1">资料索引</h2>
-    <p class="section-desc reveal reveal-delay-2">精选的学习资料与复习文档，PDF 格式，方便查阅与打印。</p>
-    <div class="doc-list">
-      <a href="pj.pdf" class="doc-item reveal" target="_blank">
-        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="doc-info"><div class="doc-name">偏微分方程 · 期末复习 (PDE 总复习)</div><div class="doc-meta">PDF · 约 17 页 · 偏微分方程</div></div>
-        <div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-      <a href="Nielsen.pdf" class="doc-item reveal reveal-delay-1" target="_blank">
-        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="doc-info"><div class="doc-name">Nielsen · 量子纠错</div><div class="doc-meta">PDF · 约 8 MB · 量子信息与量子计算</div></div>
-        <div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-      <a href="PhF_QEC(1).pdf" class="doc-item reveal reveal-delay-2" target="_blank">
-        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="doc-info"><div class="doc-name">PhF QEC · 物理量子纠错</div><div class="doc-meta">PDF · 约 38 MB · 量子纠错物理方向</div></div>
-        <div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-      <a href="QECCbook-2026(1).pdf" class="doc-item reveal reveal-delay-3" target="_blank">
-        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="doc-info"><div class="doc-name">QECCbook 2026 · 量子纠错码教材</div><div class="doc-meta">PDF · 约 1.9 MB · 量子纠错码理论</div></div>
-        <div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-      <a href="#" class="doc-item reveal reveal-delay-4">
-        <div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>
-        <div class="doc-info"><div class="doc-name">更多文档整理中...</div><div class="doc-meta">持续更新 · 敬请期待</div></div>
-        <div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
     </div>
   </div>
 </section>
@@ -273,14 +238,13 @@ footer a:hover{text-decoration:underline}
 </footer>
 
 <script>
-/* Sakura Petal Animation - Optimized */
+/* Sakura Petal Animation */
 (function(){const c=document.getElementById('petalCanvas'),ctx=c.getContext('2d');let W,H
 function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
 window.addEventListener('resize',resize);resize()
 const N=18,petals=[]
-/* Pre-create color palette */
 const hues=[];
-for(let i=0;i<25;i++){const h=330+Math.random()*40;hues.push([h,h+20,h])}
+for(let i=0;i<18;i++){const h=330+Math.random()*40;hues.push([h,h+20,h])}
 class Petal{constructor(){this.reset()}
 reset(){this.x=Math.random()*W;this.y=Math.random()*H-H;this.size=Math.random()*9+5;this.speedX=Math.random()*.5-.25;this.speedY=Math.random()*.7+.3;this.rotation=Math.random()*Math.PI*2;this.rotSpeed=(Math.random()-.5)*.02;this.wobble=Math.random()*30;this.wobbleSpeed=Math.random()*.02+.005;this.opacity=Math.random()*.4+.2;const p=hues[Math.floor(Math.random()*hues.length)];this.h=p[0];this.h2=p[1];this.h3=p[2]}
 update(){this.x+=this.speedX+Math.sin(this.wobble)*.3;this.y+=this.speedY;this.rotation+=this.rotSpeed;this.wobble+=this.wobbleSpeed;if(this.y>H+20){this.x=Math.random()*W;this.y=-20;this.wobble=Math.random()*30}if(this.x<-20)this.x=W+20;if(this.x>W+20)this.x=-20}
@@ -300,5 +264,3 @@ els.forEach(el=>obs.observe(el))
 </script>
 </body>
 </html>
-
-
