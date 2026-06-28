@@ -261,52 +261,47 @@ window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scro
 const revealEls = Array.from(document.querySelectorAll('.reveal'));
 let ticking = false;
 
+// The fade happens over this many pixels of travel near each viewport edge.
+// Element starts fading OUT while its top edge is still in [0, BAND] (visible!),
+// and finishes fading IN once its top edge is below [vh-BAND, vh].
+const BAND = 160;
+
 function update() {
   const vh = window.innerHeight;
-  // trigger zone: element fades in as it crosses the bottom 18%..0 of viewport,
-  // fades out as it leaves the top 0..18% of viewport. Symmetric.
-  const margin = vh * 0.18;
   for (const el of revealEls) {
     const r = el.getBoundingClientRect();
-    // distance from element center to viewport center, normalized
-    const center = r.top + r.height / 2;
-    // bottom enter: when center is within [vh - margin, vh] -> fade in
-    // top leave:   when center is within [0, margin] -> fade out
-    let visible;
-    if (center > vh - margin && center <= vh) {
-      // entering from bottom
-      visible = (center - (vh - margin)) / margin; // 0..1
-    } else if (center > 0 && center <= margin) {
-      // leaving from top
-      visible = center / margin; // 0..1
-    } else if (center <= 0 || center >= vh) {
-      visible = 0;
+    const top = r.top;
+    let p;
+    if (top >= vh) {
+      // completely below viewport
+      p = 0;
+    } else if (top > vh - BAND) {
+      // entering from bottom: top in [vh-BAND, vh] -> 0..1
+      p = (vh - top) / BAND;
+    } else if (top >= 0) {
+      // fully in view (top between 0 and vh-BAND)
+      p = 1;
+    } else if (top > -BAND) {
+      // leaving from top: top in [-BAND, 0] -> 1..0  (fades WHILE still visible)
+      p = (top + BAND) / BAND;
     } else {
-      visible = 1;
+      // completely above viewport
+      p = 0;
     }
-    // binary class switch with a small hysteresis to keep CSS transition doing the work
-    if (visible > 0.5) {
-      el.classList.add('is-in');
-    } else {
-      el.classList.remove('is-in');
-    }
+    // Special case: very tall element taller than viewport - keep visible while overlapping
+    if (r.height > vh && r.bottom > 0 && r.top < vh) p = Math.max(p, 0.85);
+    if (p > 0.5) el.classList.add('is-in'); else el.classList.remove('is-in');
   }
   ticking = false;
 }
 
 function onScroll() {
-  if (!ticking) {
-    ticking = true;
-    requestAnimationFrame(update);
-  }
+  if (!ticking) { ticking = true; requestAnimationFrame(update); }
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', onScroll, { passive: true });
-// initial + fallback: run immediately so first-paint elements show without waiting
 update();
-// hard safety net: if anything is still hidden after 2s, show it (prevents white screen)
-setTimeout(() => { revealEls.forEach(el => el.classList.add('is-in')); }, 2000);
-</script>
+setTimeout(() => { revealEls.forEach(el => el.classList.add('is-in')); }, 2000);</script>
 </body>
 </html>
