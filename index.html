@@ -264,7 +264,7 @@ let ticking = false;
 // The fade happens over this many pixels of travel near each viewport edge.
 // Element starts fading OUT while its top edge is still in [0, BAND] (visible!),
 // and finishes fading IN once its top edge is below [vh-BAND, vh].
-const BAND = 160;
+const BAND = 300;
 
 function update() {
   const vh = window.innerHeight;
