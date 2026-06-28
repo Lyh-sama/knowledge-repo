@@ -277,7 +277,7 @@ function update() {
       continue;
     }
     // Use a smooth threshold: is-in when > 18% visible, transition handles the rest
-    if (ratio > 0.35) {
+    if (ratio > 0.7) {
       el.classList.add('is-in');
     } else {
       el.classList.remove('is-in');
