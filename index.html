@@ -162,8 +162,8 @@ footer a:hover{text-decoration:underline}
   <div class="hero-glow hero-glow-3"></div>
   <canvas class="hero-canvas" id="petalCanvas"></canvas>
   <div class="hero-content">
-    <h1 class="hero-title">りく様の世界へようこそ</h1>
-    <div class="hero-actions">
+    <h1 class="hero-title reveal visible">りく様の世界へようこそ</h1>
+    <div class="hero-actions reveal visible">
       <a href="#categories" class="hero-btn hero-btn-primary"><i class="fa-solid fa-compass"></i> 浏览分类</a>
     </div>
   </div>
@@ -257,7 +257,7 @@ animate()})()
 const nb=document.getElementById('navbar')
 window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60)})
 
-const els=document.querySelectorAll('.reveal');const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}else{e.target.classList.remove('visible')}})},{threshold:0});els.forEach(el=>obs.observe(el))
+(function(){var els=document.querySelectorAll('.reveal');var ticking=false;function update(){var vh=window.innerHeight;for(var i=0;i<els.length;i++){var r=els[i].getBoundingClientRect();if(r.top<vh&&r.bottom>0){els[i].classList.add('visible')}else{els[i].classList.remove('visible')}}ticking=false}window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});window.addEventListener('load',function(){requestAnimationFrame(update)});requestAnimationFrame(function(){requestAnimationFrame(update)})})()
 </script>
 </body>
 </html>
