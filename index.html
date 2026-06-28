@@ -127,6 +127,16 @@ footer a:hover{text-decoration:underline}
 .accordion-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
 .accordion-body .categories-grid { padding:0 1.5rem 1.5rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
 .accordion-body .category-card { background:rgba(255,255,255,0.04); }
+
+/* Dual-column layout for 知识分类 / 所有学科 */
+.dual-column { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.dual-col { min-width: 0; }
+.dual-col .categories-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.dual-col .accordion-body .categories-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+@media (max-width: 900px) {
+  .dual-column { grid-template-columns: 1fr; }
+}
+
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .55s ease;will-change:opacity,transform}
 .reveal.is-in{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.08s}
@@ -197,9 +207,12 @@ footer a:hover{text-decoration:underline}
   <div class="section-inner">
 
         <div class="section-label reveal">知识库</div>
-    <div class="section-title reveal" style="margin-top:2rem">知识分类</div>
+    <div class="section-title reveal<div class="dual-column">
+    <div class="dual-col">
+      " style="margin-top:2rem">知识分类</div>
 
-    <div class="accordion">
+    
+      <div class="accordion">
       <div class="accordion-item">
         <div class="accordion-header reveal">
           <div class="accordion-icon"><i class="fa-solid fa-chart-line"></i></div>
@@ -314,7 +327,10 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
     </div>
-    <h2 class="section-title reveal">所有学科</h2>
+    
+    </div>
+    <div class="dual-col">
+      <h2 class="section-title reveal">所有学科</h2>
     <div class="categories-grid">
       <a href="category.html#math-analysis" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)), url('card-bg-1.jpg'); background-size:cover; background-position:center">
         <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
@@ -359,6 +375,9 @@ footer a:hover{text-decoration:underline}
     </div>
     </div>
   </div>
+  </div>
+  </div></div>
+    </div>
   </div></section>
 
 <div class="section-divider"></div>
