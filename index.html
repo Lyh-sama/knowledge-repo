@@ -257,7 +257,7 @@ animate()})()
 const nb=document.getElementById('navbar')
 window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60)})
 
-(function(){var els=document.querySelectorAll('.reveal');var ticking=false;function update(){var vh=window.innerHeight;var offset=vh*0.15;for(var i=0;i<els.length;i++){var rect=els[i].getBoundingClientRect();var inView=rect.top<vh-offset&&rect.bottom>offset;if(inView){els[i].classList.add('visible')}else{els[i].classList.remove('visible')}}ticking=false}window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});update()})()
+(function(){var els=document.querySelectorAll('.reveal');var ticking=false;function update(){var vh=window.innerHeight;for(var i=0;i<els.length;i++){var rect=els[i].getBoundingClientRect();var inView=rect.top<vh&&rect.bottom>0;if(inView){els[i].classList.add('visible')}else{els[i].classList.remove('visible')}}ticking=false}window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});setTimeout(update,150);window.addEventListener('load',update)})()
 </script>
 </body>
 </html>
