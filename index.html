@@ -264,19 +264,15 @@ window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scro
 
 
 
-// Fix back button: return to #categories when coming back from category pages
+
+// Back button fix: ensure return goes to #categories
 document.querySelectorAll('a[href^="category.html"]').forEach(function(link) {
-  link.addEventListener('click', function() {
-    sessionStorage.setItem('backTo', 'categories');
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var href = this.getAttribute('href');
+    history.replaceState(null, '', '#categories');
+    setTimeout(function() { window.location.href = href; }, 10);
   });
-});
-window.addEventListener('pageshow', function(e) {
-  if (e.persisted && sessionStorage.getItem('backTo') === 'categories') {
-    sessionStorage.removeItem('backTo');
-    if (!window.location.hash) {
-      window.location.hash = '#categories';
-    }
-  }
 });
 
 const revealEls = Array.from(document.querySelectorAll('.reveal'));
