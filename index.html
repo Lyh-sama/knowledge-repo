@@ -125,7 +125,7 @@ footer a:hover{text-decoration:underline}
 .accordion-arrow { color:var(--text-secondary); font-size:.8rem; transition:transform .3s ease; flex-shrink:0; }
 .accordion-item.open .accordion-arrow { transform:rotate(180deg); }
 .accordion-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
-.accordion-body .categories-grid { padding:0 1.5rem 1.5rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+.accordion-body .categories-grid { padding:0 1.5rem 1.5rem; }
 .accordion-body .category-card { background:rgba(255,255,255,0.04); }
 
 
@@ -192,7 +192,9 @@ footer a:hover{text-decoration:underline}
         <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">探索无止境</div></div>
       </div>
     
-<h2 class="section-title reveal" style="margin-top:3rem">所有学科</h2>
+
+    <div class="section-divider" style="margin:2.5rem 0"></div>
+    <h2 class="section-title reveal">所有学科</h2>
     <div class="categories-grid">
       <a href="category.html#math-analysis" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)), url('card-bg-1.jpg'); background-size:cover; background-position:center">
         <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
