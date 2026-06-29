@@ -130,6 +130,11 @@ footer a:hover{text-decoration:underline}
 
 
 
+
+.categories-grid-all { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+@media (max-width: 900px) { .categories-grid-all { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .categories-grid-all { grid-template-columns: 1fr; } }
+
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .55s ease;will-change:opacity,transform}
 .reveal.is-in{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.08s}
@@ -197,8 +202,8 @@ footer a:hover{text-decoration:underline}
   <div class="section-inner">
 
         <div class="section-label reveal">知识库</div>
-    <h2 class="section-title reveal">所有学科</h2>
-        <div class="categories-grid">
+    <h2 class="section-title reveal" style="display:block">所有学科</h2>
+        <div class="categories-grid-all">
       <a href="category.html#math-analysis" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)), url('card-bg-1.jpg'); background-size:cover; background-position:center">
         <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
         <h3 class="card-title">数学分析</h3>
@@ -252,7 +257,7 @@ footer a:hover{text-decoration:underline}
   <div class="section-inner">
 
         <div class="section-label reveal">知识库</div>
-    <h2 class="section-title reveal">知识分类</h2>
+    <h2 class="section-title reveal" style="display:block">知识分类</h2>
 
     
       <div class="accordion">
