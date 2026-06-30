@@ -165,8 +165,8 @@ footer a:hover{text-decoration:underline}
 .dual-head .section-title{margin-bottom:.75rem}
 
 
-.panel{display:block;position:relative;flex:1;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
-.panel:first-child{margin-left:0;border-left:none}
+.panel{display:block;position:relative;flex:1;overflow:hidden;clip-path:polygon(120px 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
+.panel:first-child{clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:0;border-left:none}
 .panel:hover{flex:2.8;z-index:2}
 .panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;filter:grayscale(60%) brightness(.4);transition:filter .8s ease,transform 1s ease}
 .panel:hover .panel-bg{filter:grayscale(0%) brightness(.7);transform:scale(1.05)}
@@ -202,8 +202,8 @@ footer a:hover{text-decoration:underline}
 .dual-head .section-title{margin-bottom:.75rem}
 
 
-.panel{display:block;position:relative;flex:1;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
-.panel:first-child{margin-left:0;border-left:none}
+.panel{display:block;position:relative;flex:1;overflow:hidden;clip-path:polygon(120px 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
+.panel:first-child{clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:0;border-left:none}
 .panel:hover{flex:3.4;z-index:2}
 .panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;filter:grayscale(60%) brightness(.4);transition:filter .8s ease,transform 1s ease}
 .panel:hover .panel-bg{filter:grayscale(0%) brightness(.72);transform:scale(1.06)}
@@ -232,9 +232,9 @@ footer a:hover{text-decoration:underline}
 
 .panels-wrap{max-width:1400px;margin:0 auto 3rem}
 .panels{display:flex;height:420px;overflow:hidden}
-.panel{flex:1;position:relative;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;transition:flex .6s cubic-bezier(.25,.46,.45,.94);cursor:pointer;text-decoration:none;color:inherit;display:block}
-.panel:first-child{margin-left:0;border-right:1px solid rgba(255,255,255,.08)}
-.panel:hover{flex:3.2;z-index:2}.panel:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.panel{flex:1;position:relative;overflow:hidden;clip-path:polygon(120px 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:-120px;transition:flex .6s cubic-bezier(.25,.46,.45,.94);cursor:pointer;text-decoration:none;color:inherit;display:block}
+.panel:first-child{clip-path:polygon(0 0,100% 0,calc(100% - 120px) 100%,0 100%);margin-left:0}
+.panel:hover{flex:3.2;z-index:2}.panel:last-child{clip-path:polygon(120px 0,100% 0,100% 100%,0 100%)}
 .panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;filter:grayscale(40%) brightness(.35);transition:filter .8s ease}
 .panel:hover .panel-bg{filter:grayscale(0%) brightness(.65);transform:scale(1.05)}
 .panel-overlay{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 2rem;background:linear-gradient(transparent,rgba(0,0,0,.75) 30%,rgba(0,0,0,.96));transition:padding .5s ease}
@@ -246,7 +246,7 @@ footer a:hover{text-decoration:underline}
 .panel:hover .panel-subs{opacity:1;transform:translateY(0)}
 .sub-link{display:inline-block;padding:4px 12px;font-size:.68rem;color:rgba(200,200,200,.65);border:1px solid rgba(200,200,200,.2);text-decoration:none;position:relative;z-index:10;transition:background .3s,color .3s,border-color .3s}
 .sub-link:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.45)}
-@media(max-width:768px){.panels,.panel{clip-path:none;margin-left:0;height:220px;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}.panel:hover{flex:1}.panel:last-child{border-bottom:none}}
+@media(max-width:768px){.panels,.panel,.panel:first-child,.panel:last-child{clip-path:none;margin-left:0;height:220px;border:none;border-bottom:1px solid rgba(255,255,255,.08)}.panel:hover{flex:1}.panel:last-child{border-bottom:none}}
 
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
