@@ -164,7 +164,7 @@ footer a:hover{text-decoration:underline}
 .dual-head .section-label{margin-bottom:.5rem}
 .dual-head .section-title{margin-bottom:.75rem}
 
-.dual-panels{display:flex;height:560px;max-height:70vh;gap:0;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+
 .panel{display:block;position:relative;flex:1;overflow:hidden;transform:skewX(-7deg);margin-left:-3px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
 .panel:first-child{margin-left:0;border-left:none}
 .panel:hover{flex:2.8;z-index:2}
@@ -201,7 +201,7 @@ footer a:hover{text-decoration:underline}
 .dual-head .section-label{margin-bottom:.5rem}
 .dual-head .section-title{margin-bottom:.75rem}
 
-.dual-panels{display:flex;height:560px;max-height:70vh;gap:0;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+
 .panel{display:block;position:relative;flex:1;overflow:hidden;transform:skewX(-7deg);margin-left:-3px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
 .panel:first-child{margin-left:0;border-left:none}
 .panel:hover{flex:3.4;z-index:2}
@@ -228,7 +228,27 @@ footer a:hover{text-decoration:underline}
   .panel-subs{opacity:1;transform:none}
 }
 
-/* v6-nodup */</style>
+/* v6-nodup */
+
+.panels-wrap{max-width:1400px;margin:0 auto 3rem}
+.panels{display:flex;height:420px;overflow:hidden}
+.panel{flex:1;position:relative;overflow:hidden;transform:skewX(-6deg);margin-left:-2px;transition:flex .6s cubic-bezier(.25,.46,.45,.94);border-right:1px solid rgba(255,255,255,.08);cursor:pointer;text-decoration:none;color:inherit;display:block}
+.panel:first-child{margin-left:0}
+.panel:hover{flex:3.2;z-index:2}
+.panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;transform:skewX(6deg);filter:grayscale(40%) brightness(.35);transition:filter .8s ease,transform 1s ease}
+.panel:hover .panel-bg{filter:grayscale(0%) brightness(.65);transform:skewX(6deg) scale(1.05)}
+.panel-overlay{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 2rem;background:linear-gradient(transparent,rgba(0,0,0,.75) 30%,rgba(0,0,0,.96));transform:skewX(6deg);transition:padding .5s ease}
+.panel-number{font-size:.6rem;letter-spacing:.3em;color:rgba(200,200,200,.35);margin-bottom:.5rem}
+.panel-title{font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.08em;margin-bottom:.4rem}
+.panel-hint{font-size:.65rem;color:rgba(200,200,200,.25);letter-spacing:.1em;transition:color .3s}
+.panel:hover .panel-hint{color:rgba(200,200,200,.5)}
+.panel-subs{display:flex;flex-wrap:wrap;gap:.5rem;opacity:0;transform:translateY(10px);transition:opacity .4s ease .2s,transform .4s ease .2s}
+.panel:hover .panel-subs{opacity:1;transform:translateY(0)}
+.sub-link{display:inline-block;padding:4px 12px;font-size:.68rem;color:rgba(200,200,200,.65);border:1px solid rgba(200,200,200,.2);text-decoration:none;position:relative;z-index:10;transition:background .3s,color .3s,border-color .3s}
+.sub-link:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.45)}
+@media(max-width:768px){.panels,.panel{transform:none;margin-left:0;height:220px;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}.panel-bg,.panel-overlay{transform:none}.panel:hover{flex:1}.panel:last-child{border-bottom:none}}
+
+</style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
@@ -275,118 +295,67 @@ footer a:hover{text-decoration:underline}
 
 <div class="section-divider"></div>
 <section id="categories">
-  <div class="dual-inner">
-
-<div class="dual-head reveal">
-  <div class="section-label">知识库</div>
-  <h2 class="section-title">知识分类</h2>
-</div>
-
-    <div class="dual-panels">
-      <a class="panel" href="category.html#analysis" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-2.jpg')">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-          <div class="panel-number">01 / ANALYSIS</div>
-          <div class="panel-subs">
-            <a href="#" class="panel-tag">数学分析</a>
-            <a href="#" class="panel-tag">实分析</a>
-            <a href="#" class="panel-tag">泛函分析</a>
-          </div>
-        </div>
-      </a>
-      <a class="panel" href="category.html#algebra" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-1.jpg')">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-          <div class="panel-number">02 / ALGEBRA</div>
-          <div class="panel-subs">
-            <a href="#" class="panel-tag">线性代数</a>
-            <a href="#" class="panel-tag">抽象代数</a>
-          </div>
-        </div>
-      </a>
-      <a class="panel" href="category.html#stats" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-5.jpg')">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-          <div class="panel-number">03 / PROB &amp; STATS</div>
-          <div class="panel-subs">
-            <a href="#" class="panel-tag">概率论</a>
-            <a href="#" class="panel-tag">数理统计</a>
-          </div>
-        </div>
-      </a>
-      <a class="panel" href="category.html#geometry" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-6.jpg')">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-          <div class="panel-number">04 / GEOMETRY</div>
-          <div class="panel-subs">
-            <a href="#" class="panel-tag">微分几何</a>
-          </div>
-        </div>
-      </a>
-      <a class="panel" href="category.html#quantum" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-7.jpg')">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-          <div class="panel-number">05 / QUANTUM</div>
-          <div class="panel-subs">
-            <a href="#" class="panel-tag">量子信息与量子计算</a>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<div class="section-divider"></div>
-<section id="categories-all">
   <div class="section-inner">
 
-    <div class="section-label reveal">知识库</div>
-    <h2 class="section-title reveal" style="display:inline-block">所有学科</h2>
-    <div class="categories-grid-all">
-      <a href="category.html#math-analysis" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-1.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-        <h3 class="card-title">数学分析</h3>
-      </a>
-      <a href="category.html#linear-algebra" class="category-card reveal reveal-delay-1" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-2.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
-        <h3 class="card-title">线性代数</h3>
-      </a>
-      <a href="category.html#probability" class="category-card reveal reveal-delay-2" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-3.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-dice"></i></div>
-        <h3 class="card-title">概率论</h3>
-      </a>
-      <a href="category.html#statistics" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-4.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div>
-        <h3 class="card-title">数理统计</h3>
-      </a>
-      <a href="category.html#differential-geometry" class="category-card reveal reveal-delay-1" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-6.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-draw-polygon"></i></div>
-        <h3 class="card-title">微分几何</h3>
-      </a>
-      <a href="category.html#real-analysis" class="category-card reveal reveal-delay-2" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-9.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-sigma"></i></div>
-        <h3 class="card-title">实分析</h3>
-      </a>
-      <a href="category.html#abstract-algebra" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-10.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-shapes"></i></div>
-        <h3 class="card-title">抽象代数</h3>
-      </a>
-      <a href="category.html#functional-analysis" class="category-card reveal reveal-delay-1" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-5.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-infinity"></i></div>
-        <h3 class="card-title">泛函分析</h3>
-      </a>
-      <a href="category.html#quantum-info" class="category-card reveal reveal-delay-2" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-7.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-atom"></i></div>
-        <h3 class="card-title">量子信息与量子计算</h3>
-      </a>
-      <div class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-8.jpg');background-size:cover;background-position:center">
-        <div class="card-icon"><i class="fa-solid fa-flask"></i></div>
-        <h3 class="card-title">更多领域</h3>
+    <div class="section-label reveal">???</div>
+    <h2 class="section-title reveal" style="display:inline-block">????</h2>
+
+    <div class="panels-wrap">
+      <div class="panels">
+
+        <div class="panel" onclick="location.href='category.html#analysis'">
+          <div class="panel-bg" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-7.jpg')"></div>
+          <div class="panel-overlay">
+            <div class="panel-number">01 / ANALYSIS</div>
+            <div class="panel-title">???</div>
+            <div class="panel-hint">Hover for subjects</div>
+            <div class="panel-subs"><a href="category.html#math-analysis" class="sub-link" onclick="event.stopPropagation()">????</a><a href="category.html#real-analysis" class="sub-link" onclick="event.stopPropagation()">???</a><a href="category.html#functional-analysis" class="sub-link" onclick="event.stopPropagation()">????</a></div>
+          </div>
+        </div>
+
+        <div class="panel" onclick="location.href='category.html#algebra'">
+          <div class="panel-bg" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-5.jpg')"></div>
+          <div class="panel-overlay">
+            <div class="panel-number">02 / ALGEBRA</div>
+            <div class="panel-title">???</div>
+            <div class="panel-hint">Hover for subjects</div>
+            <div class="panel-subs"><a href="category.html#linear-algebra" class="sub-link" onclick="event.stopPropagation()">????</a><a href="category.html#abstract-algebra" class="sub-link" onclick="event.stopPropagation()">????</a></div>
+          </div>
+        </div>
+
+        <div class="panel" onclick="location.href='category.html#probability'">
+          <div class="panel-bg" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-1.jpg')"></div>
+          <div class="panel-overlay">
+            <div class="panel-number">03 / PROB &amp; STATS</div>
+            <div class="panel-title">????</div>
+            <div class="panel-hint">Hover for subjects</div>
+            <div class="panel-subs"><a href="category.html#probability" class="sub-link" onclick="event.stopPropagation()">???</a><a href="category.html#statistics" class="sub-link" onclick="event.stopPropagation()">????</a></div>
+          </div>
+        </div>
+
+        <div class="panel" onclick="location.href='category.html#differential-geometry'">
+          <div class="panel-bg" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-6.jpg')"></div>
+          <div class="panel-overlay">
+            <div class="panel-number">04 / GEOMETRY</div>
+            <div class="panel-title">???</div>
+            <div class="panel-hint">Hover for subjects</div>
+            <div class="panel-subs"><a href="category.html#differential-geometry" class="sub-link" onclick="event.stopPropagation()">????</a></div>
+          </div>
+        </div>
+
+        <div class="panel" onclick="location.href='category.html#quantum-info'">
+          <div class="panel-bg" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-2.jpg')"></div>
+          <div class="panel-overlay">
+            <div class="panel-number">05 / QUANTUM</div>
+            <div class="panel-title">????</div>
+            <div class="panel-hint">Hover for subjects</div>
+            <div class="panel-subs"><a href="category.html#quantum-info" class="sub-link" onclick="event.stopPropagation()">?????????</a></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    
   </div>
 </section>
 
