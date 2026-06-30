@@ -156,6 +156,78 @@ footer a:hover{text-decoration:underline}
   .hero-actions{flex-direction:column;align-items:center}
   .hero-btn{width:100%;justify-content:space-between}
 }
+
+.dual-section{background:linear-gradient(to bottom,var(--bg-dark),rgba(18,18,42,.95));padding:6rem 0;position:relative;overflow:hidden}
+.dual-section::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(192,132,252,.08),rgba(255,107,157,.06),transparent);pointer-events:none}
+.dual-inner{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 2rem}
+.dual-head{text-align:left;margin-bottom:3rem}
+.dual-head .section-label{margin-bottom:.5rem}
+.dual-head .section-title{margin-bottom:.75rem}
+
+.dual-panels{display:flex;height:560px;max-height:70vh;gap:0;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+.panel{display:block;position:relative;flex:1;overflow:hidden;transform:skewX(-7deg);margin-left:-3px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
+.panel:first-child{margin-left:0;border-left:none}
+.panel:hover{flex:2.8;z-index:2}
+.panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;transform:skewX(7deg);filter:grayscale(60%) brightness(.4);transition:filter .8s ease,transform 1s ease}
+.panel:hover .panel-bg{filter:grayscale(0%) brightness(.7);transform:skewX(7deg) scale(1.05)}
+.panel-content{position:absolute;left:0;right:0;bottom:0;padding:2rem 2.5rem 2.5rem;background:linear-gradient(transparent,rgba(0,0,0,.7) 30%,rgba(0,0,0,.95));transform:skewX(7deg);transition:padding .5s ease}
+.panel:first-child .panel-content,.panel:last-child .panel-content{background:linear-gradient(transparent,rgba(0,0,0,.7) 30%,rgba(0,0,0,.95))}
+.panel-number{font-size:.65rem;letter-spacing:.3em;color:rgba(240,240,255,.55);margin-bottom:.5rem}
+.panel-title{font-family:'Noto Serif SC',serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.08em;margin-bottom:.4rem}
+.panel-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease .1s,transform .4s ease .1s}
+.panel:hover .panel-tags{opacity:1;transform:translateY(0)}
+.sub-link{display:inline-flex;align-items:center;gap:.35rem;padding:6px 14px;font-size:.7rem;color:rgba(240,240,255,.75);border:1px solid rgba(240,240,255,.28);border-radius:999px;background:rgba(0,0,0,.25);backdrop-filter:blur(6px);text-decoration:none;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.sub-link:hover{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.6);transform:translateY(-1px)}
+.dual-footer{margin-top:1.75rem;text-align:center;color:var(--text-secondary);font-size:.85rem;font-weight:300;letter-spacing:.06em}
+.dual-footer a{color:var(--accent-purple);text-decoration:none;font-weight:500}
+.dual-footer a:hover{text-decoration:underline}
+
+@media (hover: hover) and (pointer: fine){
+  .panel:hover{flex:2.8}
+}
+@media (hover: none){
+  .panel{transform:none;margin-left:0;height:300px;border-left:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .panel-bg,.panel-content{transform:none}
+  .panel:hover{flex:1}
+  .panel:last-child{border-bottom:none}
+  .panel-hint{color:rgba(240,240,255,.65)}
+  .panel-subs{opacity:1;transform:none}
+}
+
+.dual-section{background:linear-gradient(to bottom,var(--bg-dark),rgba(18,18,42,.95));padding:6rem 0;position:relative;overflow:hidden}
+.dual-section::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(192,132,252,.08),rgba(255,107,157,.06),transparent);pointer-events:none}
+.dual-inner{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 2rem}
+.dual-head{text-align:left;margin-bottom:3rem}
+.dual-head .section-label{margin-bottom:.5rem}
+.dual-head .section-title{margin-bottom:.75rem}
+
+.dual-panels{display:flex;height:560px;max-height:70vh;gap:0;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+.panel{display:block;position:relative;flex:1;overflow:hidden;transform:skewX(-7deg);margin-left:-3px;border-left:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;transition:flex .65s cubic-bezier(.25,.46,.45,.94);will-change:flex}
+.panel:first-child{margin-left:0;border-left:none}
+.panel:hover{flex:3.4;z-index:2}
+.panel-bg{position:absolute;top:-10%;left:-10%;width:140%;height:130%;background-size:cover;background-position:center;transform:skewX(7deg);filter:grayscale(60%) brightness(.4);transition:filter .8s ease,transform 1s ease}
+.panel:hover .panel-bg{filter:grayscale(0%) brightness(.72);transform:skewX(7deg) scale(1.06)}
+.panel-content{position:absolute;left:0;right:0;bottom:0;padding:2rem 2.5rem 2.5rem;background:linear-gradient(transparent,rgba(0,0,0,.7) 30%,rgba(0,0,0,.95));transform:skewX(7deg);transition:padding .5s ease}
+.panel:first-child .panel-content,.panel:last-child .panel-content{background:linear-gradient(transparent,rgba(0,0,0,.7) 30%,rgba(0,0,0,.95))}
+.panel-number{font-size:.65rem;letter-spacing:.3em;color:rgba(240,240,255,.55);margin-bottom:.5rem}
+.panel-title{font-family:'Noto Serif SC',serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.08em;margin-bottom:.4rem}
+.panel-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem;opacity:0;transform:translateY(8px);transition:opacity .4s ease .1s,transform .4s ease .1s}
+.panel:hover .panel-tags{opacity:1;transform:translateY(0)}
+.sub-link{display:inline-flex;align-items:center;gap:.35rem;padding:6px 14px;font-size:.7rem;color:rgba(240,240,255,.75);border:1px solid rgba(240,240,255,.28);border-radius:999px;background:rgba(0,0,0,.25);backdrop-filter:blur(6px);text-decoration:none;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.sub-link:hover{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.6);transform:translateY(-1px)}
+
+@media (hover: hover) and (pointer: fine){
+.panel:hover{flex:2.8}
+}
+@media (hover: none){
+  .panel{transform:none;margin-left:0;height:300px;border-left:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .panel-bg,.panel-content{transform:none}
+  .panel:hover{flex:1}
+  .panel:last-child{border-bottom:none}
+  .panel-hint{color:rgba(240,240,255,.65)}
+  .panel-subs{opacity:1;transform:none}
+}
+
 /* v6-nodup */</style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -179,7 +251,7 @@ footer a:hover{text-decoration:underline}
       <a href="#categories" class="hero-btn hero-btn-primary"><i class="fa-solid fa-compass"></i> 浏览分类</a>
     </div>
   </div>
-  <a href="#about" class="hero-scroll"><span>向下探索</span><i class="fa-solid fa-chevron-down"></i></a>
+  <a href="#about" class="hero-scroll"><span>向下探索</a><i class="fa-solid fa-chevron-down"></i></a>
 </section>
 
 <div class="section-divider"></div>
@@ -203,98 +275,74 @@ footer a:hover{text-decoration:underline}
 
 <div class="section-divider"></div>
 <section id="categories">
+  <div class="dual-inner">
+
+<div class="dual-head reveal">
+  <div class="section-label">知识库</div>
+  <h2 class="section-title">知识分类</h2>
+</div>
+
+    <div class="dual-panels">
+      <a class="panel" href="category.html#analysis" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-2.jpg')">
+        <div class="panel-bg"></div>
+        <div class="panel-content">
+          <div class="panel-number">01 / ANALYSIS</div>
+          <div class="panel-subs">
+            <a href="#" class="panel-tag">数学分析</a>
+            <a href="#" class="panel-tag">实分析</a>
+            <a href="#" class="panel-tag">泛函分析</a>
+          </div>
+        </div>
+      </a>
+      <a class="panel" href="category.html#algebra" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-1.jpg')">
+        <div class="panel-bg"></div>
+        <div class="panel-content">
+          <div class="panel-number">02 / ALGEBRA</div>
+          <div class="panel-subs">
+            <a href="#" class="panel-tag">线性代数</a>
+            <a href="#" class="panel-tag">抽象代数</a>
+          </div>
+        </div>
+      </a>
+      <a class="panel" href="category.html#stats" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-5.jpg')">
+        <div class="panel-bg"></div>
+        <div class="panel-content">
+          <div class="panel-number">03 / PROB &amp; STATS</div>
+          <div class="panel-subs">
+            <a href="#" class="panel-tag">概率论</a>
+            <a href="#" class="panel-tag">数理统计</a>
+          </div>
+        </div>
+      </a>
+      <a class="panel" href="category.html#geometry" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-6.jpg')">
+        <div class="panel-bg"></div>
+        <div class="panel-content">
+          <div class="panel-number">04 / GEOMETRY</div>
+          <div class="panel-subs">
+            <a href="#" class="panel-tag">微分几何</a>
+          </div>
+        </div>
+      </a>
+      <a class="panel" href="category.html#quantum" style="background-image:url('https://lyh-sama.github.io/Riku_sama_no_SEKAI/card-bg-7.jpg')">
+        <div class="panel-bg"></div>
+        <div class="panel-content">
+          <div class="panel-number">05 / QUANTUM</div>
+          <div class="panel-subs">
+            <a href="#" class="panel-tag">量子信息与量子计算</a>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+<section id="categories-all">
   <div class="section-inner">
 
     <div class="section-label reveal">知识库</div>
-    <h2 class="section-title reveal" style="display:inline-block">知识分类</h2>
-    <div class="accordion">
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <span class="accordion-name">分析</span>
-          <span class="accordion-desc">数学分析 · 实分析 · 泛函分析</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <a href="category.html#math-analysis" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-1.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-chart-line"></i></div><h3 class="card-title">数学分析</h3></a>
-            <a href="category.html#real-analysis" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-9.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-sigma"></i></div><h3 class="card-title">实分析</h3></a>
-            <a href="category.html#functional-analysis" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-5.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-infinity"></i></div><h3 class="card-title">泛函分析</h3></a>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-calculator"></i></div>
-          <span class="accordion-name">代数</span>
-          <span class="accordion-desc">线性代数 · 抽象代数</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <a href="category.html#linear-algebra" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-2.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-calculator"></i></div><h3 class="card-title">线性代数</h3></a>
-            <a href="category.html#abstract-algebra" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-10.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-shapes"></i></div><h3 class="card-title">抽象代数</h3></a>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-dice"></i></div>
-          <span class="accordion-name">概率与统计</span>
-          <span class="accordion-desc">概率论 · 数理统计</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <a href="category.html#probability" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-3.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-dice"></i></div><h3 class="card-title">概率论</h3></a>
-            <a href="category.html#statistics" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-4.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div><h3 class="card-title">数理统计</h3></a>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-draw-polygon"></i></div>
-          <span class="accordion-name">几何</span>
-          <span class="accordion-desc">微分几何</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <a href="category.html#differential-geometry" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-6.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-draw-polygon"></i></div><h3 class="card-title">微分几何</h3></a>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-atom"></i></div>
-          <span class="accordion-name">量子</span>
-          <span class="accordion-desc">量子信息与量子计算</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <a href="category.html#quantum-info" class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-7.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-atom"></i></div><h3 class="card-title">量子信息与量子计算</h3></a>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <div class="accordion-header reveal">
-          <div class="accordion-icon"><i class="fa-solid fa-flask"></i></div>
-          <span class="accordion-name">更多</span>
-          <span class="accordion-desc">更多领域</span>
-          <i class="fa-solid fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="accordion-body">
-          <div class="categories-grid">
-            <div class="category-card" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-8.jpg');background-size:cover;background-position:center"><div class="card-icon"><i class="fa-solid fa-flask"></i></div><h3 class="card-title">更多领域</h3></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider" style="margin:3rem 0"></div>
-
-    <h2 class="section-title reveal" style="display:inline-block;margin-top:2rem">所有学科</h2>
+    <h2 class="section-title reveal" style="display:inline-block">所有学科</h2>
     <div class="categories-grid-all">
       <a href="category.html#math-analysis" class="category-card reveal" style="background-image:linear-gradient(rgba(10,10,26,0.82), rgba(10,10,26,0.82)),url('card-bg-1.jpg');background-size:cover;background-position:center">
         <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
@@ -429,6 +477,38 @@ document.querySelectorAll('.accordion-header').forEach(function(header) {
       body.classList.add('open');
       body.style.maxHeight = (body.scrollHeight + 48) + 'px';
     }
+  });
+});
+
+
+window.addEventListener('pointerdown', function(e) {
+  if (!e.target.closest('.panel')) return;
+  const panel = e.target.closest('.panel');
+  const hint = panel.querySelector('.panel-hint');
+  if (!hint) return;
+  const isTiny = window.innerWidth < 768;
+  const isHoverDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (isTiny || !isHoverDevice) {
+    const showing = panel.classList.contains('force-open');
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('force-open'); });
+    if (!showing) panel.classList.add('force-open');
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.panel')) {
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('force-open'); });
+  }
+});
+
+document.querySelectorAll('.panel').forEach(function(panel) {
+  panel.addEventListener('mouseenter', function() {
+    panel.classList.add('force-open');
+  });
+  panel.addEventListener('mouseleave', function() {
+    panel.classList.remove('force-open');
   });
 });
 
