@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识分类 — りく様の世界</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-dark:#0a0a1a;
+  --accent-pink:#ff6b9d;
+  --accent-purple:#c084fc;
+  --text-primary:#f1f0fb;
+  --text-secondary:#a5a3c4;
+  --glass-bg:rgba(255,255,255,0.08);
+  --glass-border:rgba(255,255,255,0.08);
+  --card-radius:16px;
+  --transition:0.4s cubic-bezier(0.22,1,0.36,1)
+}
+body{
+  font-family:'Noto Sans SC',-apple-system,sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-primary);
+  line-height:1.7;
+  min-height:100vh
+}
+::selection{background:var(--accent-pink);color:#fff}
+
+.navbar{position:sticky;top:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;gap:1.5rem;background:rgba(10,10,26,0.93);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-back{color:var(--text-secondary);text-decoration:none;font-size:.9rem;transition:var(--transition);display:flex;align-items:center;gap:.4rem}
+.nav-back:hover{color:var(--text-primary)}
+.nav-title{font-size:1.1rem;font-weight:600;background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+main{max-width:800px;margin:0 auto;padding:3rem 2rem}
+.category-header{margin-bottom:2.5rem}
+.category-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:linear-gradient(135deg,rgba(255,107,157,0.15),rgba(192,132,252,0.15));color:var(--accent-purple);margin-bottom:1rem}
+.category-name{font-family:'Noto Serif SC',serif;font-size:2rem;font-weight:600}
+.category-desc{color:var(--text-secondary);font-weight:300;margin-top:.5rem}
+
+.doc-list{display:grid;gap:1rem}
+.doc-item{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;border-radius:var(--card-radius);background:var(--glass-bg);border:1px solid var(--glass-border);transition:var(--transition);text-decoration:none;color:inherit}
+.doc-item:hover{transform:translateX(6px);border-color:rgba(192,132,252,0.3);background:rgba(192,132,252,0.04)}
+.doc-icon{width:44px;height:44px;flex-shrink:0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:rgba(255,107,157,0.12);color:var(--accent-pink)}
+.doc-info{flex:1;min-width:0}
+.doc-name{font-weight:500;font-size:.95rem;margin-bottom:.15rem}
+.doc-meta{color:var(--text-secondary);font-size:.8rem}
+.doc-arrow{color:var(--text-secondary);font-size:.9rem;transition:var(--transition)}
+.doc-item:hover .doc-arrow{color:var(--accent-purple);transform:translateX(4px)}
+
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--text-secondary)}
+.empty-state i{font-size:2.5rem;margin-bottom:1rem;color:rgba(192,132,252,0.3)}
+.empty-state p{font-weight:300}
+
+footer{padding:2rem;text-align:center;color:var(--text-secondary);font-size:.85rem;font-weight:300;border-top:1px solid rgba(255,255,255,0.04)}
+footer a{color:var(--accent-purple);text-decoration:none}
+
+@media(max-width:480px){
+  main{padding:2rem 1.25rem}
+  .category-name{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html#categories" class="nav-back"><i class="fa-solid fa-arrow-left"></i> 返回</a>
+  <span class="nav-title" id="navTitle">分类</span>
+</nav>
+<main>
+  <div class="category-header">
+    <div class="category-icon" id="catIcon"><i class="fa-solid fa-folder"></i></div>
+    <h1 class="category-name" id="catName">分类名称</h1>
+    <p class="category-desc" id="catDesc"></p>
+  </div>
+  <div class="doc-list" id="docList"></div>
+</main>
+<footer>
+  <p>知识仓库 — 由 <a href="https://github.com/Lyh-sama" target="_blank">Lyh-sama</a> 用心维护</p>
+</footer>
+<script>
+(function(){
+var categories = {
+  'math-analysis': {
+    name: '数学分析',
+    icon: 'fa-chart-line',
+    desc: '极限、导数、积分、级数，分析学的基础与核心。',
+    docs: [
+      { name: '梅加强 · 数学分析讲义', meta: 'PDF · 数学分析', file: 'Mei-Jiaqiang-Mathematical-Analysis.pdf' },
+      { name: '徐森林 · 数学分析 (第2册)', meta: 'PDF · 数学分析', file: 'Xu-Senlin-Mathematical-Analysis-2.pdf' },
+      { name: '徐森林 · 数学分析 (第3册)', meta: 'PDF · 数学分析', file: 'Xu-Senlin-Mathematical-Analysis-3.pdf' }
+    ]
+  },
+  'real-analysis': {
+    name: '实分析',
+    icon: 'fa-sigma',
+    docs: []
+  },
+  'linear-algebra': {
+    name: '线性代数',
+    icon: 'fa-calculator',
+    desc: '向量空间、矩阵变换、特征值，现代数学的基石。',
+    docs: []
+  },
+  'abstract-algebra': {
+    name: '抽象代数',
+    icon: 'fa-shapes',
+    docs: []
+  },
+  'probability': {
+    name: '概率论',
+    icon: 'fa-dice',
+    desc: '随机变量、分布、极限定理，不确定性的数学语言。',
+    docs: [
+      { name: 'Durrett · 概率论 (第5版)', meta: 'PDF · 概率论', file: 'durrett.pdf' },
+      { name: 'Durrett · 习题解答 (第5版)', meta: 'PDF · 概率论', file: 'durrett-5e-solutions.pdf' }
+    ]
+  },
+  'statistics': {
+    name: '数理统计',
+    icon: 'fa-chart-simple',
+    desc: '估计、检验、回归，从数据中提取信息的方法论。',
+    docs: [
+      { name: 'Casella & Berger · 统计推断', meta: 'PDF · 数理统计', file: 'Casella-Berger-Statistical-Inference.pdf' },
+      { name: 'HW 1 答案', meta: 'PDF · 数理统计', file: 'hw1-ans.pdf' },
+      { name: 'HW 2 答案', meta: 'PDF · 数理统计', file: 'hw2-ans.pdf' },
+      { name: 'HW 3 答案', meta: 'PDF · 数理统计', file: 'hw3-ans.pdf' },
+      { name: 'HW 4 答案', meta: 'PDF · 数理统计', file: 'hw4-ans.pdf' },
+      { name: 'HW 5 答案', meta: 'PDF · 数理统计', file: 'hw5-ans.pdf' },
+      { name: 'HW 6 答案', meta: 'PDF · 数理统计', file: 'hw6-ans.pdf' },
+      { name: 'HW 7 答案', meta: 'PDF · 数理统计', file: 'hw7-ans.pdf' },
+      { name: 'HW 8 答案', meta: 'PDF · 数理统计', file: 'hw8-ans.pdf' },
+      { name: 'HW 9 答案', meta: 'PDF · 数理统计', file: 'hw9-ans.pdf' },
+      { name: 'HW 10 答案', meta: 'PDF · 数理统计', file: 'hw10-ans.pdf' },
+      { name: 'HW 11 答案', meta: 'PDF · 数理统计', file: 'hw11-ans.pdf' },
+      { name: 'HW 12 答案', meta: 'PDF · 数理统计', file: 'hw12-ans.pdf' },
+      { name: 'HW 13 答案', meta: 'PDF · 数理统计', file: 'hw13-ans.pdf' },
+      { name: 'HW 14 答案', meta: 'PDF · 数理统计', file: 'hw14-ans.pdf' },
+      { name: 'HW 15 答案', meta: 'PDF · 数理统计', file: 'hw15-ans.pdf' },
+      { name: '陈家鼎 · 讲义 part1', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part1.pdf' },
+      { name: '陈家鼎 · 讲义 part2', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part2.pdf' },
+      { name: '陈家鼎 · 讲义 part3', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part3.pdf' },
+      { name: '陈家鼎 · 讲义 part4', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part4.pdf' },
+      { name: '陈家鼎 · 讲义 part5', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part5.pdf' },
+      { name: '陈家鼎 · 讲义 part6', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part6.pdf' },
+      { name: '陈家鼎 · 讲义 part7', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part7.pdf' },
+      { name: '陈家鼎 · 讲义 part8', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part8.pdf' },
+      { name: '陈家鼎 · 讲义 part9', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part9.pdf' },
+      { name: '陈家鼎 · 讲义 part10', meta: 'PDF · 数理统计', file: 'Chen-Jiading-Statistics-Lecture-3rd-part10.pdf' },
+      { name: '补充资料', meta: 'PDF · 数理统计', file: 'stat.pdf' }
+    ]
+  },
+  'differential-geometry': {
+    name: '微分几何',
+    icon: 'fa-draw-polygon',
+    desc: '流形、曲率、联络，几何的现代语言。',
+    docs: [
+      { name: '微分几何讲义', meta: 'PDF · 微分几何', file: 'Differential-Geometry-Lecture.pdf' },
+      { name: '陈维桓 · 微分几何', meta: 'PDF · 微分几何', file: 'Chen-Weihuan-Differential-Geometry.pdf' }
+    ]
+  },
+  'functional-analysis': {
+    name: '泛函分析',
+    icon: 'fa-infinity',
+    desc: '无限维空间、算子理论，分析的几何化视角。',
+    docs: [
+      { name: 'Ch 0 引言', meta: 'PDF · 泛函分析', file: '2026-Chpt0-Intro-ppt.pdf' },
+      { name: 'Ch 6 Sec 1', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec01-ppt.pdf' },
+      { name: 'Ch 6 Sec 2', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec02-ppt-No-Pause.pdf' },
+      { name: 'Ch 6 Sec 3', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec03-ppt.pdf' },
+      { name: 'Ch 6 Sec 4', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec04-ppt.pdf' },
+      { name: 'Ch 6 Sec 5', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec05-ppt.pdf' },
+      { name: 'Ch 6 Sec 6', meta: 'PDF · 泛函分析', file: '2026-Chpt06-Sec06-ppt.pdf' },
+      { name: 'Ch 7 Sec 1', meta: 'PDF · 泛函分析', file: '2026-Chpt07-Sec01-ppt.pdf' },
+      { name: 'Ch 7 Sec 2', meta: 'PDF · 泛函分析', file: '2026-Chpt07-Sec02-ppt.pdf' },
+      { name: 'Ch 7 Sec 3', meta: 'PDF · 泛函分析', file: '2026-Chpt07-Sec03-ppt.pdf' },
+      { name: 'Ch 7 Sec 4', meta: 'PDF · 泛函分析', file: '2026-Chpt07-Sec04-ppt.pdf' },
+      { name: 'Ch 8 Sec 1', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect01-ppt.pdf' },
+      { name: 'Ch 8 Sec 2', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect02-ppt.pdf' },
+      { name: 'Ch 8 Sec 3', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect03-ppt.pdf' },
+      { name: 'Ch 8 Sec 4', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect04-ppt.pdf' },
+      { name: 'Ch 8 Sec 5', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect05-ppt.pdf' },
+      { name: 'Ch 8 Sec 6', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect06-ppt.pdf' },
+      { name: 'Ch 8 Sec 7', meta: 'PDF · 泛函分析', file: '2026-chpt08-sect07-ppt.pdf' },
+      { name: 'Ch 9 Sec 1-2', meta: 'PDF · 泛函分析', file: '2026-Chpt09-Sec01-Sec02-ppt.pdf' },
+      { name: '期末复习', meta: 'PDF · 泛函分析', file: '2026-Final-Review.pdf' }
+    ]
+  },
+  'quantum-info': {
+    name: '量子信息与量子计算',
+    icon: 'fa-atom',
+    desc: '量子比特、量子门、量子纠错，信息与物理的交汇。',
+    docs: [
+      { name: 'Nielsen · 量子纠错', meta: 'PDF · 量子信息与量子计算', file: 'Nielsen.pdf' },
+      { name: 'QECCbook 2026 · 量子纠错码教材', meta: 'PDF · 量子信息与量子计算', file: 'QECCbook-2026.pdf' }
+    ]
+  }
+};
+
+function renderCategory() {
+  var hash = window.location.hash.substring(1) || 'math-analysis';
+  var cat = categories[hash] || categories['math-analysis'];
+  
+  document.title = cat.name + ' — りく様の世界';
+  document.getElementById('navTitle').textContent = cat.name;
+  document.getElementById('catName').textContent = cat.name;
+  document.getElementById('catDesc').textContent = cat.desc;
+  document.getElementById('catIcon').innerHTML = '<i class="fa-solid ' + cat.icon + '"></i>';
+  
+  var list = document.getElementById('docList');
+  if (cat.docs.length === 0) {
+    list.innerHTML = '<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>该分类暂无文档，持续整理中...</p></div>';
+  } else {
+    var html = '';
+    for (var i = 0; i < cat.docs.length; i++) {
+      var d = cat.docs[i];
+      html += '<a href="' + d.file + '" class="doc-item" target="_blank">' +
+        '<div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>' +
+        '<div class="doc-info"><div class="doc-name">' + d.name + '</div><div class="doc-meta">' + d.meta + '</div></div>' +
+        '<div class="doc-arrow"><i class="fa-solid fa-arrow-right"></i></div>' +
+        '</a>';
+    }
+    list.innerHTML = html;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderCategory);
+window.addEventListener('hashchange', renderCategory);
+})();
+
+// Back button: return to categories section on index.html
+(function(){
+  history.pushState({_cat:1}, '', location.href);
+  window.addEventListener('popstate', function() {
+    window.location.replace('index.html#categories');
+  });
+})();
+
+</script>
+</body>
+</html>

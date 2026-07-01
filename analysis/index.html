@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分析 — りく様の世界</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg-dark:#0a0a1a;--accent-pink:#ff6b9d;--accent-purple:#c084fc;--text-primary:#f1f0fb;--text-secondary:#a5a3c4;--glass-bg:rgba(255,255,255,.04);--glass-border:rgba(255,255,255,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;background:var(--bg-dark);color:var(--text-primary);min-height:100vh}
+::selection{background:var(--accent-pink);color:#fff}
+
+.navbar{display:flex;align-items:center;gap:1rem;padding:1rem 2rem;background:rgba(10,10,26,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:10}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;color:var(--text-secondary);font-size:.85rem;text-decoration:none;transition:color .3s}
+.nav-back:hover{color:var(--accent-purple)}
+.nav-title{font-family:"Noto Serif SC",serif;font-size:1.1rem;font-weight:600;color:var(--text-primary)}
+
+.hero{position:relative;padding:4rem 2rem 3rem;text-align:center;background:linear-gradient(to bottom,rgba(192,132,252,.08),transparent)}
+.hero-icon{width:64px;height:64px;margin:0 auto 1rem;background:linear-gradient(135deg,rgba(192,132,252,.15),rgba(255,107,157,.15));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--accent-purple)}
+.hero h1{font-family:"Noto Serif SC",serif;font-size:2rem;font-weight:700;margin-bottom:.25rem;background:linear-gradient(135deg,#d4b0ff,var(--accent-purple) 35%,var(--accent-pink) 65%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .count{color:var(--text-secondary);font-size:.85rem}
+
+main{max-width:900px;margin:0 auto;padding:0 2rem 5rem}
+.sub-section{margin-bottom:2.5rem}
+.sub-title{font-family:"Noto Serif SC",serif;font-size:1.25rem;font-weight:600;color:var(--text-primary);margin-bottom:.75rem;padding-left:.75rem;border-left:3px solid var(--accent-purple)}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.6rem}
+.doc-card{display:flex;align-items:center;gap:.8rem;padding:.85rem 1rem;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:6px;text-decoration:none;color:inherit;transition:border-color .3s,background .3s}
+.doc-card:hover{border-color:rgba(192,132,252,.3);background:rgba(255,255,255,.06)}
+.doc-icon{width:36px;height:36px;background:rgba(192,132,252,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--accent-purple);font-size:1rem;flex-shrink:0}
+.doc-info{flex:1;min-width:0}
+.doc-info .doc-name{font-size:.85rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.doc-info .doc-meta{font-size:.68rem;color:var(--text-secondary)}
+.doc-dl{color:var(--accent-purple);font-size:.8rem;opacity:0;transition:opacity .3s}
+.doc-card:hover .doc-dl{opacity:1}
+.empty{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border:1px dashed var(--glass-border);border-radius:6px}
+
+.folder-card{background:rgba(192,132,252,.06);border:1px solid var(--glass-border);border-radius:8px;overflow:hidden;transition:border-color .3s;margin-bottom:.6rem}
+.folder-card.open{border-color:rgba(192,132,252,.25)}
+.folder-header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;cursor:pointer;user-select:none;transition:background .3s}
+.folder-header:hover{background:rgba(255,255,255,.03)}
+.folder-icon{width:36px;height:36px;background:rgba(192,132,252,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent-purple);font-size:.9rem;flex-shrink:0;transition:background .3s,color .3s}
+.folder-card.open .folder-icon{background:linear-gradient(135deg,var(--accent-pink),var(--accent-purple));color:#fff}
+.folder-info{flex:1;min-width:0}
+.folder-name{font-size:.88rem;font-weight:500;color:var(--text-primary)}
+.folder-meta{font-size:.72rem;color:var(--text-secondary)}
+.folder-arrow{color:var(--text-secondary);font-size:.75rem;transition:transform .3s ease;flex-shrink:0}
+.folder-card.open .folder-arrow{transform:rotate(180deg)}
+.folder-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.folder-body.open{max-height:2000px}
+.folder-docs{padding:0 1rem .75rem}
+.folder-doc-row{display:flex;align-items:center;gap:.6rem;padding:.55rem .75rem;text-decoration:none;color:var(--text-primary);font-size:.8rem;border-radius:4px;transition:background .2s}
+.folder-doc-row:hover{background:rgba(255,255,255,.05);color:var(--accent-purple)}
+.folder-doc-row::before{content:'';display:inline-block;width:4px;height:4px;background:var(--accent-purple);border-radius:50%;flex-shrink:0;opacity:.6}
+.folder-doc-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.folder-docs .doc-card{margin-bottom:.35rem;background:rgba(255,255,255,.03)}
+.folder-docs .doc-card:last-child{margin-bottom:0}
+
+@media(max-width:480px){main{padding:0 1rem 4rem}.hero{padding:3rem 1rem 2rem}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html#categories" class="nav-back"><i class="fa-solid fa-arrow-left"></i> 返回</a>
+  <span class="nav-title">分析</span>
+</nav>
+<div class="hero">
+  <div class="hero-icon"><i class="fa-solid fa-folder-open"></i></div>
+  <h1>分析</h1>
+  <p class="count" id="docCount"></p>
+</div>
+<main id="content"></main>
+<script>
+var sections = [
+  {"name": "数学分析", "docs": [
+    {"name": "梅加强 · 数学分析讲义", "meta": "PDF · 数学分析", "file": "Mei-Jiaqiang-Mathematical-Analysis.pdf"},
+    {"name": "徐森林 · 数学分析 (第2册)", "meta": "PDF · 数学分析", "file": "Xu-Senlin-Mathematical-Analysis-2.pdf"},
+    {"name": "徐森林 · 数学分析 (第3册)", "meta": "PDF · 数学分析", "file": "Xu-Senlin-Mathematical-Analysis-3.pdf"}
+  ]},
+  {"name": "实分析", "docs": []},
+  {"name": "泛函分析", "docs": [
+    {"name": "Ch 0 引言", "meta": "PDF · 泛函分析", "file": "2026-Chpt0-Intro-ppt.pdf"},
+    {"isFolder": true, "folderName": "Ch 6 · 课件", "folderMeta": "6 份文档 · 泛函分析", "icon": "fa-folder", "docs": [
+      {"name": "Ch 6 Sec 1", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec01-ppt.pdf"},
+      {"name": "Ch 6 Sec 2", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec02-ppt-No-Pause.pdf"},
+      {"name": "Ch 6 Sec 3", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec03-ppt.pdf"},
+      {"name": "Ch 6 Sec 4", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec04-ppt.pdf"},
+      {"name": "Ch 6 Sec 5", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec05-ppt.pdf"},
+      {"name": "Ch 6 Sec 6", "meta": "PDF · 泛函分析", "file": "2026-Chpt06-Sec06-ppt.pdf"}
+    ]},
+    {"isFolder": true, "folderName": "Ch 7 · 课件", "folderMeta": "4 份文档 · 泛函分析", "icon": "fa-folder", "docs": [
+      {"name": "Ch 7 Sec 1", "meta": "PDF · 泛函分析", "file": "2026-Chpt07-Sec01-ppt.pdf"},
+      {"name": "Ch 7 Sec 2", "meta": "PDF · 泛函分析", "file": "2026-Chpt07-Sec02-ppt.pdf"},
+      {"name": "Ch 7 Sec 3", "meta": "PDF · 泛函分析", "file": "2026-Chpt07-Sec03-ppt.pdf"},
+      {"name": "Ch 7 Sec 4", "meta": "PDF · 泛函分析", "file": "2026-Chpt07-Sec04-ppt.pdf"}
+    ]},
+    {"isFolder": true, "folderName": "Ch 8 · 课件", "folderMeta": "7 份文档 · 泛函分析", "icon": "fa-folder", "docs": [
+      {"name": "Ch 8 Sec 1", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect01-ppt.pdf"},
+      {"name": "Ch 8 Sec 2", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect02-ppt.pdf"},
+      {"name": "Ch 8 Sec 3", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect03-ppt.pdf"},
+      {"name": "Ch 8 Sec 4", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect04-ppt.pdf"},
+      {"name": "Ch 8 Sec 5", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect05-ppt.pdf"},
+      {"name": "Ch 8 Sec 6", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect06-ppt.pdf"},
+      {"name": "Ch 8 Sec 7", "meta": "PDF · 泛函分析", "file": "2026-chpt08-sect07-ppt.pdf"}
+    ]},
+    {"isFolder": true, "folderName": "Ch 9 · 课件", "folderMeta": "1 份文档 · 泛函分析", "icon": "fa-folder", "docs": [
+      {"name": "Ch 9 Sec 1-2", "meta": "PDF · 泛函分析", "file": "2026-Chpt09-Sec01-Sec02-ppt.pdf"}
+    ]},
+    {"name": "期末复习", "meta": "PDF · 泛函分析", "file": "2026-Final-Review.pdf"}
+  ]}
+];
+
+var total = 0;
+var html = "";
+sections.forEach(function(sec){
+  html += '<div class="sub-section"><h2 class="sub-title">' + sec.name + '</h2>';
+  if (sec.docs.length === 0) {
+    html += '<div class="empty">暂无资料</div>';
+  } else {
+    html += '<div class="doc-grid">';
+    sec.docs.forEach(function(d){
+      if (d.isFolder) {
+        total += d.docs.length;
+        html += '<div class="folder-card">';
+        html += '<div class="folder-header" onclick="toggleFolder(this)">';
+        html += '<div class="folder-icon"><i class="fa-solid ' + (d.icon || "fa-folder") + '"></i></div>';
+        html += '<div class="folder-info"><div class="folder-name">' + d.folderName + '</div><div class="folder-meta">' + d.folderMeta + '</div></div>';
+        html += '<span class="folder-arrow"><i class="fa-solid fa-chevron-down"></i></span>';
+        html += '</div>';
+        html += '<div class="folder-body"><div class="folder-docs">';
+        d.docs.forEach(function(sub){
+          html += '<a href="../' + sub.file + '" class="folder-doc-row" target="_blank">';
+          html += '<span class="folder-doc-name">' + sub.name + '</span>';
+          html += '</a>';
+        });
+        html += '</div></div>';
+        html += '</div>';
+      } else {
+        total++;
+        html += '<a href="../' + d.file + '" class="doc-card" target="_blank">';
+        html += '<div class="doc-icon"><i class="fa-solid fa-file-pdf"></i></div>';
+        html += '<div class="doc-info"><div class="doc-name">' + d.name + '</div><div class="doc-meta">' + d.meta + '</div></div>';
+        html += '<span class="doc-dl"><i class="fa-solid fa-download"></i></span>';
+        html += '</a>';
+      }
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+});
+document.getElementById("content").innerHTML = html;
+document.getElementById("docCount").textContent = total + " 份资料";
+
+function toggleFolder(header) {
+  var card = header.parentElement;
+  var body = card.querySelector(".folder-body");
+  var isOpen = body.classList.contains("open");
+  if (isOpen) {
+    body.classList.remove("open");
+    card.classList.remove("open");
+    body.style.maxHeight = "0";
+  } else {
+    body.classList.add("open");
+    card.classList.add("open");
+    body.style.maxHeight = body.scrollHeight + "px";
+  }
+}
+</script>
+</body>
+</html>
+
